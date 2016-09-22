@@ -58,7 +58,7 @@ public abstract class AbsReceiver implements IDispatcher, IMonitor.OnMonitoringL
     /**
      * 接收到客户端发送的正文长度和附加信息UDP报文时调用
      *
-     * @param bytes  bytes 长度为 4 + n, 前4位存放正文长度, 类型为int, 后面的附加信息字节长度请参考IBase里的注释
+     * @param bytes  bytes 长度为 4 + n, 前4位存放正文长度, 类型为int, 后面的附加信息字节长度请参考 {@Link com.gem1ni.udp.impl.IBase} 里的注释
      * @param offset
      * @param length
      */
