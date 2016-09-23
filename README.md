@@ -30,6 +30,12 @@ client.sendString(String toSend);
 client.sendFile(File  toSend);
 ```
 
+To do...
+-------
+Add comments. (It all depends)
+
+![Garfield](garfield.jpg)
+
 License
 -------
 
