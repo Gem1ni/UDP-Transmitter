@@ -14,7 +14,7 @@ UDPServer server = new UDPServer.Builder(int port).build();
 // Start listening to receive a string
 server.receiveString();
 // Or to receive a file
-server.receiveFile();        
+server.receiveFile();
 ```
 
 #### 2. Build an UDPClient to send data.
