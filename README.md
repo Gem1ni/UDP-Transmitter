@@ -9,7 +9,7 @@ Usage
 
 #### 1. Build an UDPServer to receive data by listening a local port.
 ```java
-// Create UDPServer an instance
+// Create an UDPServer instance
 UDPServer server = new UDPServer.Builder(int port).build();
 // Start listening to receive a string
 server.receiveString();
