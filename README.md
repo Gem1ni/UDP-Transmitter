@@ -1,8 +1,34 @@
 # UDP-Transmitter
+
+An UDP-Based Transmission
+
 一个基于UDP协议的可扩展的数据传输小程序
 
+Usage
+-------
 
+#### 1. Build an UDPServer to receive data by listening a local port.
+```java
+// Create UDPServer an instance
+UDPServer server = new UDPServer.Builder(int port).build();
+// Start listening to receive a string
+server.receiveString();
+// Or to receive a file
+server.receiveFile();        
+```
 
+#### 2. Build an UDPClient to send data.
+```java
+// Create an UDPClient instance
+UDPClient client = new UDPClient.Builder(InetAddress address)   // address of the UDPServer
+                        .localPort(int localPort)               // use local port
+                        .remotePort(int remotePort)             // the port which the UDPServer is listening
+                        .build();                               // return the UDPClient instance
+// Send a string
+client.sendString(String toSend);
+// Send a file
+client.sendFile(File  toSend);
+```
 
 License
 -------
