@@ -27,7 +27,7 @@ UDPClient client = new UDPClient.Builder(InetAddress address)   // address of th
 // Send a string
 client.sendString(String toSend);
 // Send a file
-client.sendFile(File  toSend);
+client.sendFile(File toSend);
 ```
 
 To do
