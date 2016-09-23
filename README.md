@@ -25,9 +25,9 @@ UDPClient client = new UDPClient.Builder(InetAddress address)   // address of th
                         .remotePort(int remotePort)             // the port which the UDPServer is listening
                         .build();                               // return the UDPClient instance
 // Send a string
-client.sendString(String toSend);
-// Send a file
-client.sendFile(File toSend);
+client.sendString(String string);
+// Or send a file
+client.sendFile(File file);
 ```
 
 To do
