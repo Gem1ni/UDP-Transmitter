@@ -30,7 +30,7 @@ client.sendString(String toSend);
 client.sendFile(File  toSend);
 ```
 
-To do...
+To do
 -------
 Add comments. (It all depends)
 
