@@ -30,7 +30,7 @@ import java.util.TreeMap;
  */
 public class StringReceiver extends AbsReceiver {
 
-    private Map<Integer, byte[]> mBytesMap = Collections.synchronizedMap(new TreeMap<>());
+    private Map<Integer, byte[]> mBytesMap = Collections.synchronizedMap(new TreeMap<Integer, byte[]>());
 
     public StringReceiver(int port) {
         super(port);
