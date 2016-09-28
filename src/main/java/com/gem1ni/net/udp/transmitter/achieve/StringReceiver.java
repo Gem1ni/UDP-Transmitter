@@ -17,6 +17,7 @@
 package com.gem1ni.net.udp.transmitter.achieve;
 
 import com.gem1ni.net.udp.transmitter.core.AbsReceiver;
+import com.gem1ni.net.udp.transmitter.util.ByteUtil;
 import com.gem1ni.net.udp.transmitter.util.L;
 
 import java.util.Collections;
@@ -42,7 +43,7 @@ public class StringReceiver extends AbsReceiver {
 
     @Override
     public void onDataTransferring(byte[] bytes, int offset, int length, int position, int total) {
-        mBytesMap.put(position, bytes);
+        mBytesMap.put(position, ByteUtil.subBytes(bytes, 0, length));
     }
 
     @Override
