@@ -31,7 +31,7 @@ import java.util.concurrent.Executors;
  * AbsSender 抽象的发送器
  * Created by GemIni on 2016/9/19.
  */
-public abstract class AbsSender<T> implements IDispatcher, IReceiver.OnReceiveListener {
+public abstract class AbsSender<T> extends Thread implements IDispatcher, IReceiver.OnReceiveListener {
 
     private ExecutorService mSenderPool;
     private DatagramSocket mDataSocket;
@@ -48,13 +48,6 @@ public abstract class AbsSender<T> implements IDispatcher, IReceiver.OnReceiveLi
         this.mRemotePort = remotePort;
         this.mObjectToSend = objectToSend;
         this.mTotalLength = 0;
-        try {
-            this.mDataSocket = new DatagramSocket(mLocalPort, mAddress);
-            this.mDataSocket.setSoTimeout(10 * 1000);
-            this.mReceiver = new ReceiverImpl(mDataSocket, this);
-        } catch (SocketException e) {
-            closeSocket();
-        }
     }
 
     /**
@@ -74,22 +67,34 @@ public abstract class AbsSender<T> implements IDispatcher, IReceiver.OnReceiveLi
     public abstract String specifyAdditionalInfo(T t);
 
     @Override
-    public void start() {
-        mReceiver.receive();
-        mTotalLength = specifyContentLength(mObjectToSend);
-        L.out("Length to send: " + mTotalLength);
-        String temp = specifyAdditionalInfo(mObjectToSend);
-        byte[] prepareToSend = ByteUtil.intToBytes(mTotalLength);
-        if (temp != null) {
-            byte[] additionInfoByteArr = temp.getBytes();
-            if (additionInfoByteArr.length > BUFFER_SIZE) {
-                throw new IllegalArgumentException("addition info over length!");
+    public void launch() {
+        super.start();
+    }
+
+    @Override
+    public void run() {
+        try {
+            mDataSocket = new DatagramSocket(mLocalPort, mAddress);
+            mDataSocket.setSoTimeout(10 * 1000);
+            mReceiver = new ReceiverImpl(mDataSocket, this);
+            mReceiver.receive();
+            mTotalLength = specifyContentLength(mObjectToSend);
+            L.out("Length to send: " + mTotalLength);
+            String temp = specifyAdditionalInfo(mObjectToSend);
+            byte[] prepareToSend = ByteUtil.intToBytes(mTotalLength);
+            if (temp != null) {
+                byte[] additionInfoByteArr = temp.getBytes();
+                if (additionInfoByteArr.length > BUFFER_SIZE) {
+                    throw new IllegalArgumentException("addition info over length!");
+                }
+                L.out("          with addition info: " + temp);
+                mSenderPool.submit(new SenderImpl(mDataSocket, mAddress, mRemotePort, ByteUtil.concatByteArray(prepareToSend, additionInfoByteArr)));
+                return;
             }
-            L.out("          with addition info: " + temp);
-            mSenderPool.submit(new SenderImpl(mDataSocket, mAddress, mRemotePort, ByteUtil.concatByteArray(prepareToSend, additionInfoByteArr)));
-            return;
+            mSenderPool.submit(new SenderImpl(mDataSocket, mAddress, mRemotePort, prepareToSend));
+        } catch (SocketException e) {
+            closeSocket();
         }
-        mSenderPool.submit(new SenderImpl(mDataSocket, mAddress, mRemotePort, prepareToSend));
     }
 
     @Override

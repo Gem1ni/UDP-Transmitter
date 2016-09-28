@@ -35,7 +35,7 @@ public class UDPServer {
     public void receiveString() {
         try {
             IDispatcher dispatcher = new StringReceiver(mPort);
-            dispatcher.start();
+            dispatcher.launch();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +44,7 @@ public class UDPServer {
     public void receiveFile() {
         try {
             IDispatcher dispatcher = new FileReceiver(mPort);
-            dispatcher.start();
+            dispatcher.launch();
         } catch (Exception e) {
             e.printStackTrace();
         }

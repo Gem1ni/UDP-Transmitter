@@ -41,12 +41,12 @@ public class UDPClient {
 
     public void sendString(String toSend) {
         IDispatcher dispatcher = new StringSender(mAddress, mLocalPort, mRemotePort, toSend);
-        dispatcher.start();
+        dispatcher.launch();
     }
 
     public void sendFile(File toSend) {
         IDispatcher dispatcher = new FileSender(mAddress, mLocalPort, mRemotePort, toSend);
-        dispatcher.start();
+        dispatcher.launch();
     }
 
     public static class Builder {

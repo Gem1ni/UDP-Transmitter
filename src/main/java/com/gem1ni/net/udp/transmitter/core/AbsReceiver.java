@@ -32,27 +32,34 @@ import java.util.concurrent.Executors;
  * AbsReceiver 抽象的Receiver
  * Created by GemIni on 2016/9/18.
  */
-public abstract class AbsReceiver implements IDispatcher, IMonitor.OnMonitoringListener, ISender.OnSendListener, ITransfer.OnTransferListener {
+public abstract class AbsReceiver extends Thread implements IDispatcher, IMonitor.OnMonitoringListener, ISender.OnSendListener, ITransfer.OnTransferListener {
 
     private ExecutorService mSenderPool;
     private DatagramSocket mDataSocket;
     private IMonitor mMonitor;
     private ITransfer mTransfer;
+    private int mPort;
 
     public AbsReceiver(int port) {
-        mSenderPool = Executors.newSingleThreadExecutor();
-        try {
-            this.mDataSocket = new DatagramSocket(port);
-            this.mDataSocket.setSoTimeout(10 * 1000);
-            this.mMonitor = new MonitorImpl(mDataSocket, this);
-        } catch (SocketException e) {
-            closeSocket();
-        }
+        this.mSenderPool = Executors.newSingleThreadExecutor();
+        this.mPort = port;
     }
 
     @Override
-    public final void start() {
-        mMonitor.commencer();
+    public final void launch() {
+        super.start();
+    }
+
+    @Override
+    public final void run() {
+        try {
+            mDataSocket = new DatagramSocket(mPort);
+            mDataSocket.setSoTimeout(10 * 1000);
+            mMonitor = new MonitorImpl(mDataSocket, this);
+            mMonitor.commencer();
+        } catch (SocketException e) {
+            closeSocket();
+        }
     }
 
     /**

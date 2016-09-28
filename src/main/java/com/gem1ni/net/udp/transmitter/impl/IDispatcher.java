@@ -24,5 +24,5 @@ public interface IDispatcher {
 
     int BUFFER_SIZE = IBase.BUFFER_SIZE - IBase.INDEX_SIZE;
 
-    void start();
+    void launch();
 }
