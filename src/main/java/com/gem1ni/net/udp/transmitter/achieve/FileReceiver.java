@@ -22,7 +22,6 @@ import com.gem1ni.net.udp.transmitter.util.L;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.net.SocketException;
 
 /**
  * FileReceiver 文件接收
@@ -33,7 +32,7 @@ public class FileReceiver extends AbsReceiver {
     private RandomAccessFile mRandomAccessFile;
     private File mFile, mSavePath;
 
-    public FileReceiver(int port) throws SocketException {
+    public FileReceiver(int port) {
         super(port);
         this.mSavePath = new File("e:\\");
     }
