@@ -26,9 +26,7 @@ public interface IDispatcher {
      * Buffer size of the content in transmission
      * <p>
      * the UDP datagram packet is mainly composed of two parts.
-     * <p>
      * --   1. first 4 bytes {@link com.gem1ni.net.udp.transmitter.impl.IBase#INDEX_SIZE} is the index of datagram packet.
-     * <p>
      * --   2. from 5 to the end, those are the bytes of content in datagram packet
      */
     int CONTENT_BUFFER_SIZE = IBase.BUFFER_SIZE - IBase.INDEX_SIZE;
