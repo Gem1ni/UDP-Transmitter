@@ -17,6 +17,7 @@
 package com.gem1ni.net.udp.transmitter.achieve;
 
 import com.gem1ni.net.udp.transmitter.core.AbsSender;
+import com.gem1ni.net.udp.transmitter.util.ByteUtil;
 
 import java.net.InetAddress;
 
@@ -42,21 +43,7 @@ public class StringSender extends AbsSender<String> {
 
     @Override
     public byte[] toSendByteArray(String s, int offset, int length) {
-        return subBytes(s.getBytes(), offset, length);
-    }
-
-    /**
-     * 从一个byte[]数组中截取一部分
-     *
-     * @param src
-     * @param begin
-     * @param count
-     * @return
-     */
-    private byte[] subBytes(byte[] src, int begin, int count) {
-        byte[] bs = new byte[count];
-        for (int i = begin; i < begin + count; i++) bs[i - begin] = src[i];
-        return bs;
+        return ByteUtil.subBytes(s.getBytes(), offset, length);
     }
 
     @Override
