@@ -39,7 +39,7 @@ Add comments. (It all depends)
 License
 -------
 
-    Copyright 2016 Gem1ni
+    Copyright 2016 Gem1ni. All rights reserved.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
