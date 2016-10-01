@@ -33,21 +33,13 @@ public class UDPServer {
     }
 
     public void receiveString() {
-        try {
-            IDispatcher dispatcher = new StringReceiver(mPort);
-            dispatcher.launch();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        IDispatcher dispatcher = new StringReceiver(mPort);
+        dispatcher.launch();
     }
 
     public void receiveFile() {
-        try {
-            IDispatcher dispatcher = new FileReceiver(mPort);
-            dispatcher.launch();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        IDispatcher dispatcher = new FileReceiver(mPort);
+        dispatcher.launch();
     }
 
     public static class Builder {
