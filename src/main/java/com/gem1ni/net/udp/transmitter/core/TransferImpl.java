@@ -28,7 +28,7 @@ import java.util.concurrent.Executors;
 
 /**
  * TransferImpl
- * Created by GemIni on 2016/9/18.
+ * Created by Gem1ni on 2016/9/18.
  */
 public class TransferImpl implements ITransfer {
 

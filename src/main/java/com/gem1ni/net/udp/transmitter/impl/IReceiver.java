@@ -20,21 +20,36 @@ import java.net.InetAddress;
 
 /**
  * IReceiver
- * Created by GemIni on 2016/9/19.
+ * Created by Gem1ni on 2016/9/19.
  */
 public interface IReceiver extends IBase {
 
-    void receive();
-
-    void shutdown();
-
-    @Override
-    void run();
-
     interface OnReceiveListener {
 
+        /**
+         * Called when receiving the reply from the UDPServer, to let the UDPClient know how many bytes the UDPServer received.
+         *
+         * @param bytes   received bytes contains a int value represent the received bytes length by the UDPServer
+         * @param offset  the offset of the bytes, always 0
+         * @param length  the length of the bytes
+         * @param address ip address of the UDPServer
+         * @param port    port of the UDPServer
+         */
         void onReceiveReply(byte[] bytes, int offset, int length, InetAddress address, int port);
 
         void onReceiveFailed(Exception e);
     }
+
+    @Override
+    void run();
+
+    /**
+     * start to receive reply from UDPServer
+     */
+    void receive();
+
+    /**
+     * stop receiving
+     */
+    void shutdown();
 }

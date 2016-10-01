@@ -22,11 +22,11 @@ import com.gem1ni.net.udp.transmitter.impl.IDispatcher;
 
 /**
  * UDP Server
- * Created by GemIni on 2016/9/18.
+ * Created by Gem1ni on 2016/9/18.
  */
 public class UDPServer {
 
-    private final int mPort;
+    private int mPort;
 
     private UDPServer(int port) {
         this.mPort = port;

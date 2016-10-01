@@ -18,7 +18,7 @@ package com.gem1ni.net.udp.transmitter.impl;
 
 /**
  * UDP IBase
- * Created by GemIni on 2016/9/20.
+ * Created by Gem1ni on 2016/9/20.
  */
 public interface IBase extends Runnable {
 

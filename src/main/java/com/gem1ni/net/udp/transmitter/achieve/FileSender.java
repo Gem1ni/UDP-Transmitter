@@ -26,7 +26,7 @@ import java.net.InetAddress;
 
 /**
  * 发送文件
- * Created by GemIni on 2016/9/22.
+ * Created by Gem1ni on 2016/9/22.
  */
 public class FileSender extends AbsSender<File> {
 

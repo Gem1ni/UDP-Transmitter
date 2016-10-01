@@ -20,21 +20,35 @@ import java.net.InetAddress;
 
 /**
  * ITransfer
- * Created by GemIni on 2016/9/18.
+ * Created by Gem1ni on 2016/9/18.
  */
 public interface ITransfer extends IBase {
 
-    void transfer();
-
-    @Override
-    void run();
-
     interface OnTransferListener {
 
+        /**
+         * onTransferring
+         *
+         * @param fromAddress the address of remote client
+         * @param remotePort  the port of remote client
+         * @param bytes       the data
+         * @param offset      the offset of the bytes, always 0
+         * @param length      the length of the content, not the bytes
+         * @param position    the start position of the content
+         * @param total       the total length of the transmission
+         */
         void onTransferring(InetAddress fromAddress, int remotePort, byte[] bytes, int offset, int length, int position, int total);
 
         void onTransferComplete();
 
         void onTransferFailed(Exception e);
     }
+
+    @Override
+    void run();
+
+    /**
+     * start to transmit data
+     */
+    void transfer();
 }

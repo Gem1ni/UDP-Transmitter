@@ -18,13 +18,28 @@ package com.gem1ni.net.udp.transmitter.impl;
 
 /**
  * UDP Dispatcher
- * Created by GemIni on 2016/9/18.
+ * Created by Gem1ni on 2016/9/18.
  */
 public interface IDispatcher {
 
-    int BUFFER_SIZE = IBase.BUFFER_SIZE - IBase.INDEX_SIZE;
+    /**
+     * Buffer size of the content in transmission
+     * <p>
+     * the UDP datagram packet is mainly composed of two parts.
+     * <p>
+     * --   1. first 4 bytes {@link com.gem1ni.net.udp.transmitter.impl.IBase#INDEX_SIZE} is the index of datagram packet.
+     * <p>
+     * --   2. from 5 to the end, those are the bytes of content in datagram packet
+     */
+    int CONTENT_BUFFER_SIZE = IBase.BUFFER_SIZE - IBase.INDEX_SIZE;
 
+    /**
+     * Default Timeout 10 seconds
+     */
     int DEFAULT_SO_TIMEOUT = 10 * 1000;
 
+    /**
+     * launch the dispatcher.
+     */
     void launch();
 }

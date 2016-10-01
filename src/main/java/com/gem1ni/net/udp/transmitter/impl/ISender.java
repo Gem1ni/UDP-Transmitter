@@ -18,14 +18,14 @@ package com.gem1ni.net.udp.transmitter.impl;
 
 /**
  * UDP Sender
- * Created by GemIni on 2016/9/18.
+ * Created by Gem1ni on 2016/9/18.
  */
 public interface ISender extends IBase {
-
-    @Override
-    void run();
 
     interface OnSendListener {
         void onSendFailed(Exception e);
     }
+
+    @Override
+    void run();
 }

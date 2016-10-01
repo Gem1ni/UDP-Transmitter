@@ -30,7 +30,7 @@ import java.util.concurrent.Executors;
 
 /**
  * AbsReceiver 抽象的Receiver
- * Created by GemIni on 2016/9/18.
+ * Created by Gem1ni on 2016/9/18.
  */
 public abstract class AbsReceiver extends Thread implements IDispatcher, IMonitor.OnMonitoringListener, ISender.OnSendListener, ITransfer.OnTransferListener {
 

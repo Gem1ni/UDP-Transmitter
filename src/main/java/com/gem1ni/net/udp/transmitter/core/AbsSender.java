@@ -29,7 +29,7 @@ import java.util.concurrent.Executors;
 
 /**
  * AbsSender 抽象的发送器
- * Created by GemIni on 2016/9/19.
+ * Created by Gem1ni on 2016/9/19.
  */
 public abstract class AbsSender<T> extends Thread implements IDispatcher, IReceiver.OnReceiveListener {
 
@@ -84,7 +84,7 @@ public abstract class AbsSender<T> extends Thread implements IDispatcher, IRecei
             byte[] prepareToSend = ByteUtil.intToBytes(mTotalLength);
             if (temp != null) {
                 byte[] additionInfoByteArr = temp.getBytes();
-                if (additionInfoByteArr.length > BUFFER_SIZE) {
+                if (additionInfoByteArr.length > CONTENT_BUFFER_SIZE) {
                     throw new IllegalArgumentException("addition info over length!");
                 }
                 L.out("          with addition info: " + temp);
@@ -112,9 +112,9 @@ public abstract class AbsSender<T> extends Thread implements IDispatcher, IRecei
                     closeSocket();
                     break;
                 }
-                int contentLength = (received + BUFFER_SIZE > mTotalLength) ? mTotalLength - received : BUFFER_SIZE;
+                int contentLength = (received + CONTENT_BUFFER_SIZE > mTotalLength) ? mTotalLength - received : CONTENT_BUFFER_SIZE;
                 byte[] toSend = toSendByteArray(mObjectToSend, received, contentLength);
-                byte[] indexByteArr = ByteUtil.intToBytes(received / BUFFER_SIZE);
+                byte[] indexByteArr = ByteUtil.intToBytes(received / CONTENT_BUFFER_SIZE);
                 mSenderPool.submit(new SenderImpl(mDataSocket, address, port, ByteUtil.concatByteArray(indexByteArr, toSend)));
                 break;
         }

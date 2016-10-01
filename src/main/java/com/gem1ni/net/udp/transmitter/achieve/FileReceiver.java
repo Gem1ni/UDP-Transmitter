@@ -25,7 +25,7 @@ import java.io.RandomAccessFile;
 
 /**
  * FileReceiver 文件接收
- * Created by GemIni on 2016/9/18.
+ * Created by Gem1ni on 2016/9/18.
  */
 public class FileReceiver extends AbsReceiver {
 

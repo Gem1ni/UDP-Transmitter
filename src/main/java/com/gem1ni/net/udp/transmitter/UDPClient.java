@@ -25,13 +25,13 @@ import java.net.InetAddress;
 
 /**
  * UDPClient
- * Created by GemIni on 2016/9/19.
+ * Created by Gem1ni on 2016/9/19.
  */
 public class UDPClient {
 
-    private final InetAddress mAddress;
-    private final int mLocalPort;
-    private final int mRemotePort;
+    private InetAddress mAddress;
+    private int mLocalPort;
+    private int mRemotePort;
 
     private UDPClient(InetAddress address, int localPort, int remotePort) {
         this.mAddress = address;

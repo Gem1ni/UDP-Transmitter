@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 
 /**
  * ReceiverImpl
- * Created by GemIni on 2016/9/19.
+ * Created by Gem1ni on 2016/9/19.
  */
 public class ReceiverImpl implements IReceiver {
 
