@@ -29,38 +29,37 @@ import java.net.InetAddress;
  */
 public class UDPClient {
 
-    private InetAddress mAddress;
     private int mLocalPort;
+    private InetAddress mRemoteAddress;
     private int mRemotePort;
 
-    private UDPClient(InetAddress address, int localPort, int remotePort) {
-        this.mAddress = address;
+    private UDPClient(int localPort, InetAddress address, int remotePort) {
         this.mLocalPort = localPort;
+        this.mRemoteAddress = address;
         this.mRemotePort = remotePort;
     }
 
     public void sendString(String toSend) {
-        IDispatcher dispatcher = new StringSender(mAddress, mLocalPort, mRemotePort, toSend);
+        IDispatcher dispatcher = new StringSender(mLocalPort, mRemoteAddress, mRemotePort, toSend);
         dispatcher.launch();
     }
 
     public void sendFile(File toSend) {
-        IDispatcher dispatcher = new FileSender(mAddress, mLocalPort, mRemotePort, toSend);
+        IDispatcher dispatcher = new FileSender(mLocalPort, mRemoteAddress, mRemotePort, toSend);
         dispatcher.launch();
     }
 
     public static class Builder {
-        private InetAddress mAddress;
+        private InetAddress mRemoteAddress;
         private int mLocalPort;
         private int mRemotePort;
 
-        public Builder(InetAddress address) {
-            if (address == null) throw new NullPointerException("address can not be null");
-            this.mAddress = address;
+        public Builder(int localPort) {
+            this.mLocalPort = localPort;
         }
 
-        public Builder localPort(int localPort) {
-            this.mLocalPort = localPort;
+        public Builder remoteAddress(InetAddress remoteAddress) {
+            this.mRemoteAddress = remoteAddress;
             return this;
         }
 
@@ -70,7 +69,9 @@ public class UDPClient {
         }
 
         public UDPClient build() {
-            return new UDPClient(mAddress, mLocalPort, mRemotePort);
+            if (mRemoteAddress == null)
+                throw new NullPointerException("remote address can not be null");
+            return new UDPClient(mLocalPort, mRemoteAddress, mRemotePort);
         }
     }
 }

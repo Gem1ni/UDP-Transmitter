@@ -36,15 +36,15 @@ public abstract class AbsSender<T> extends Thread implements IDispatcher, IRecei
     private ExecutorService mSenderPool;
     private DatagramSocket mDataSocket;
     private IReceiver mReceiver;
-    private InetAddress mAddress;
+    private InetAddress mRemoteAddress;
     private int mLocalPort, mRemotePort;
     private T mObjectToSend;
     private int mTotalLength;
 
-    public AbsSender(InetAddress address, int localPort, int remotePort, T objectToSend) {
+    public AbsSender(int localPort, InetAddress address, int remotePort, T objectToSend) {
         this.mSenderPool = Executors.newSingleThreadExecutor();
-        this.mAddress = address;
         this.mLocalPort = localPort;
+        this.mRemoteAddress = address;
         this.mRemotePort = remotePort;
         this.mObjectToSend = objectToSend;
         this.mTotalLength = 0;
@@ -88,10 +88,10 @@ public abstract class AbsSender<T> extends Thread implements IDispatcher, IRecei
                     throw new IllegalArgumentException("addition info over length!");
                 }
                 L.out("          with addition info: " + temp);
-                mSenderPool.submit(new SenderImpl(mDataSocket, mAddress, mRemotePort, ByteUtil.concatByteArray(prepareToSend, additionInfoByteArr)));
+                mSenderPool.submit(new SenderImpl(mDataSocket, mRemoteAddress, mRemotePort, ByteUtil.concatByteArray(prepareToSend, additionInfoByteArr)));
                 return;
             }
-            mSenderPool.submit(new SenderImpl(mDataSocket, mAddress, mRemotePort, prepareToSend));
+            mSenderPool.submit(new SenderImpl(mDataSocket, mRemoteAddress, mRemotePort, prepareToSend));
         } catch (SocketException e) {
             closeSocket();
         }

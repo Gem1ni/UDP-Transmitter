@@ -20,8 +20,8 @@ server.receiveFile();
 #### 2. Build an UDPClient to send data.
 ```java
 // Create an UDPClient instance
-UDPClient client = new UDPClient.Builder(InetAddress address)   // address of the UDPServer
-                        .localPort(int localPort)               // use local port
+UDPClient client = new UDPClient.Builder(int localPort)         // use local port
+                        .remoteAddress(InetAddress address)     // address of the UDPServer
                         .remotePort(int remotePort)             // the port which the UDPServer is listening
                         .build();                               // return the UDPClient instance
 // Send a string

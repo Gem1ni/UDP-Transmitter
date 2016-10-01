@@ -32,8 +32,8 @@ public class FileSender extends AbsSender<File> {
 
     FileInputStream mFileInputStream;
 
-    public FileSender(InetAddress address, int localPort, int remotePort, File fileToSend) {
-        super(address, localPort, remotePort, fileToSend);
+    public FileSender(int localPort, InetAddress address, int remotePort, File fileToSend) {
+        super(localPort, address, remotePort, fileToSend);
     }
 
     @Override

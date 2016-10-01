@@ -27,8 +27,8 @@ import java.net.InetAddress;
  */
 public class StringSender extends AbsSender<String> {
 
-    public StringSender(InetAddress address, int localPort, int remotePort, String stringToSend) {
-        super(address, localPort, remotePort, stringToSend);
+    public StringSender(int localPort, InetAddress address, int remotePort, String stringToSend) {
+        super(localPort, address, remotePort, stringToSend);
     }
 
     @Override
