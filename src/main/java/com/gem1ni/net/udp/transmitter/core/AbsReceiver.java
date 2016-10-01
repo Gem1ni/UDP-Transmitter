@@ -54,7 +54,7 @@ public abstract class AbsReceiver extends Thread implements IDispatcher, IMonito
     public final void run() {
         try {
             mDataSocket = new DatagramSocket(mPort);
-            mDataSocket.setSoTimeout(10 * 1000);
+            mDataSocket.setSoTimeout(DEFAULT_SO_TIMEOUT);
             mMonitor = new MonitorImpl(mDataSocket, this);
             mMonitor.commencer();
         } catch (SocketException e) {

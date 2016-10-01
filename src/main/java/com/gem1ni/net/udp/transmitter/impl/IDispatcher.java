@@ -24,5 +24,7 @@ public interface IDispatcher {
 
     int BUFFER_SIZE = IBase.BUFFER_SIZE - IBase.INDEX_SIZE;
 
+    int DEFAULT_SO_TIMEOUT = 10 * 1000;
+
     void launch();
 }

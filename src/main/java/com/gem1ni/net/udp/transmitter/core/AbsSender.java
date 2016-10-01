@@ -75,7 +75,7 @@ public abstract class AbsSender<T> extends Thread implements IDispatcher, IRecei
     public void run() {
         try {
             mDataSocket = new DatagramSocket(mLocalPort);
-            mDataSocket.setSoTimeout(10 * 1000);
+            mDataSocket.setSoTimeout(DEFAULT_SO_TIMEOUT);
             mReceiver = new ReceiverImpl(mDataSocket, this);
             mReceiver.receive();
             mTotalLength = specifyContentLength(mObjectToSend);
