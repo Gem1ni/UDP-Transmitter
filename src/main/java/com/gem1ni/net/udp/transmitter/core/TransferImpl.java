@@ -68,9 +68,8 @@ public class TransferImpl implements ITransfer {
             mOnTransferListener.onTransferComplete();
         } catch (IOException e) {
             mOnTransferListener.onTransferFailed(e);
-        } finally {
-            mExecutor.shutdown();
         }
+        mExecutor.shutdown();
     }
 
     /**
