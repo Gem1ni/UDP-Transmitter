@@ -66,9 +66,10 @@ public class TransferImpl implements ITransfer {
                 L.err("Received : " + mBytesReceived + " byte(s) of " + mBytesToReceive + " total byte(s), process: " + ((long) mBytesReceived) * 100 / mBytesToReceive + " %");
             }
             mOnTransferListener.onTransferComplete();
-            mExecutor.shutdown();
         } catch (IOException e) {
             mOnTransferListener.onTransferFailed(e);
+        } finally {
+            mExecutor.shutdown();
         }
     }
 
