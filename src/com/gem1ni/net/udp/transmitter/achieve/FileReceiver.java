@@ -63,8 +63,8 @@ public class FileReceiver extends AbsReceiver {
     @Override
     public void onTransferCompleted() {
         try {
-            L.err("Transfer completed.");
             mRandomAccessFile.close();
+            L.err("Transfer completed.");
         } catch (Exception e) {
             // IO Exception
         }

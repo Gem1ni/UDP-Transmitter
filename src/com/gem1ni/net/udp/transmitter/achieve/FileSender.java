@@ -69,8 +69,8 @@ public class FileSender extends AbsSender<File> {
     @Override
     public void onSendCompleted() {
         try {
-            L.out("Send completed.");
             mFileInputStream.close();
+            L.out("Send completed.");
         } catch (IOException e) {
             e.printStackTrace();
         }

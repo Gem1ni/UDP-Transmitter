@@ -126,8 +126,8 @@ public abstract class AbsReceiver extends Thread implements IDispatcher, IMonito
     @Override
     public final void onTransferComplete() {
         mSenderPool.shutdown();
-        onTransferCompleted();
         closeSocket();
+        onTransferCompleted();
     }
 
     public abstract void onTransferCompleted();
