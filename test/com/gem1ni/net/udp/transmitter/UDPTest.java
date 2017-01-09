@@ -16,6 +16,7 @@
 
 package com.gem1ni.net.udp.transmitter;
 
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -28,11 +29,13 @@ public class UDPTest {
         try {
             UDPServer server = new UDPServer.Builder(5231).build();
             server.receiveFile("d:\\", "test.txt");
+//            server.receiveString();
             UDPClient client = new UDPClient.Builder(1234)
                     .remoteAddress(InetAddress.getByName("192.168.11.25"))
                     .remotePort(5231)
                     .build();
-            client.sendString("测试测试，嘿嘿嘿嘿！！！");
+//            client.sendString("测试测试，嘿嘿嘿嘿！！！");
+            client.sendFile(new File("D:\\catalina.out"));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

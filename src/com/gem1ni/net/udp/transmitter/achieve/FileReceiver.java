@@ -43,7 +43,6 @@ public class FileReceiver extends AbsReceiver {
         try {
             if (!mFile.exists()) mFile.createNewFile();
             L.out(mFile.getAbsolutePath());
-            L.out("Content Length: " + byteToReceive);
             mRandomAccessFile = new RandomAccessFile(mFile, "rwd");
         } catch (IOException e) {
             // file not found

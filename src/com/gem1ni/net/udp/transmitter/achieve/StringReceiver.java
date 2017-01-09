@@ -38,7 +38,7 @@ public class StringReceiver extends AbsReceiver {
 
     @Override
     public void onInitialization(int byteToReceive) {
-        L.out("Content Length: " + byteToReceive);
+
     }
 
     @Override
