@@ -22,7 +22,7 @@ package com.gem1ni.net.udp.transmitter.util;
  */
 public class L {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static void out(Object object) {
         if (DEBUG)
