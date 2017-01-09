@@ -27,18 +27,15 @@ import java.net.InetAddress;
  */
 public class StringSender extends AbsSender<String> {
 
+    private String addition = null;
+
     public StringSender(int localPort, InetAddress address, int remotePort, String stringToSend) {
         super(localPort, address, remotePort, stringToSend);
     }
 
     @Override
-    public int specifyContentLength(String s) {
+    public int getContentLength(String s) {
         return s.getBytes().length;
-    }
-
-    @Override
-    public String specifyAdditionalInfo(String s) {
-        return "name.txt";
     }
 
     @Override

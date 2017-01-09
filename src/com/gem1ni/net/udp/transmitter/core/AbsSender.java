@@ -56,15 +56,7 @@ public abstract class AbsSender<T> extends Thread implements IDispatcher, IRecei
      * @param t
      * @return
      */
-    public abstract int specifyContentLength(T t);
-
-    /**
-     * 指定附加信息
-     *
-     * @param t
-     * @return
-     */
-    public abstract String specifyAdditionalInfo(T t);
+    public abstract int getContentLength(T t);
 
     @Override
     public void launch() {
@@ -78,20 +70,10 @@ public abstract class AbsSender<T> extends Thread implements IDispatcher, IRecei
             mDataSocket.setSoTimeout(DEFAULT_SO_TIMEOUT);
             mReceiver = new ReceiverImpl(mDataSocket, this);
             mReceiver.receive();
-            mTotalLength = specifyContentLength(mObjectToSend);
+            mTotalLength = getContentLength(mObjectToSend);
             L.out("Length to send: " + mTotalLength);
-            String temp = specifyAdditionalInfo(mObjectToSend);
-            byte[] prepareToSend = ByteUtil.intToBytes(mTotalLength);
-            if (temp != null) {
-                byte[] additionInfoByteArr = temp.getBytes();
-                if (additionInfoByteArr.length > CONTENT_BUFFER_SIZE) {
-                    throw new IllegalArgumentException("addition info over length!");
-                }
-                L.out("          with addition info: " + temp);
-                mSenderPool.submit(new SenderImpl(mDataSocket, mRemoteAddress, mRemotePort, ByteUtil.concatByteArray(prepareToSend, additionInfoByteArr)));
-                return;
-            }
-            mSenderPool.submit(new SenderImpl(mDataSocket, mRemoteAddress, mRemotePort, prepareToSend));
+            byte[] toSend = ByteUtil.intToBytes(mTotalLength);
+            mSenderPool.submit(new SenderImpl(mDataSocket, mRemoteAddress, mRemotePort, toSend));
         } catch (SocketException e) {
             closeSocket();
         }

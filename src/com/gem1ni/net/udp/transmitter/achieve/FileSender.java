@@ -37,18 +37,13 @@ public class FileSender extends AbsSender<File> {
     }
 
     @Override
-    public int specifyContentLength(File file) {
+    public int getContentLength(File file) {
         try {
             this.mFileInputStream = new FileInputStream(file);
             return mFileInputStream.available();
         } catch (IOException e) {
             return 0;
         }
-    }
-
-    @Override
-    public String specifyAdditionalInfo(File file) {
-        return file.getName();
     }
 
     @Override

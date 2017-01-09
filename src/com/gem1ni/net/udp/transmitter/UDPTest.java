@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-import com.gem1ni.net.udp.transmitter.UDPClient;
-import com.gem1ni.net.udp.transmitter.UDPServer;
+package com.gem1ni.net.udp.transmitter;
 
-import java.io.File;
 import java.net.InetAddress;
 
 /**
@@ -28,13 +26,13 @@ public class UDPTest {
     public static void main(String args[]) {
         try {
             UDPServer server = new UDPServer.Builder(5231).build();
-            server.receiveFile();
+            server.receiveFile("d:\\", "test.txt");
             UDPClient client = new UDPClient.Builder(1234)
-                    .remoteAddress(InetAddress.getByName("192.168.8.102"))
+                    .remoteAddress(InetAddress.getByName("192.168.11.25"))
                     .remotePort(5231)
                     .build();
 //            client.sendString("Android");
-            client.sendFile(new File("D:\\name.txt"));
+            client.sendString("测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！测试测试测试测试嘿嘿嘿嘿！！！！");
 //            System.out.println("".getBytes().length);
         } catch (Exception e) {
             e.printStackTrace();

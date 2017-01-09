@@ -22,6 +22,7 @@ import com.gem1ni.net.udp.transmitter.util.L;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.net.URL;
 
 /**
  * FileReceiver 文件接收
@@ -30,19 +31,19 @@ import java.io.RandomAccessFile;
 public class FileReceiver extends AbsReceiver {
 
     private RandomAccessFile mRandomAccessFile;
-    private File mFile, mSavePath;
+    private File mFile;
 
-    public FileReceiver(int port) {
+    public FileReceiver(int port, String path, String fileName) {
         super(port);
-        this.mSavePath = new File("e:\\");
+        this.mFile = new File(path, fileName);
     }
 
     @Override
-    public void onHandleAdditionalInfo(String additionalInfo) {
+    public void onInitialization(int byteToReceive) {
         try {
-            mFile = new File(mSavePath, additionalInfo);
             if (!mFile.exists()) mFile.createNewFile();
             L.out(mFile.getAbsolutePath());
+            L.out("Content Length: " + byteToReceive);
             mRandomAccessFile = new RandomAccessFile(mFile, "rwd");
         } catch (IOException e) {
             // file not found

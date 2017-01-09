@@ -37,8 +37,8 @@ public class StringReceiver extends AbsReceiver {
     }
 
     @Override
-    public void onHandleAdditionalInfo(String additionalInfo) {
-        L.out("Additional info: " + additionalInfo);
+    public void onInitialization(int byteToReceive) {
+        L.out("Content Length: " + byteToReceive);
     }
 
     @Override
@@ -48,10 +48,10 @@ public class StringReceiver extends AbsReceiver {
 
     @Override
     public void onTransferCompleted() {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         for (byte[] bytes : mBytesMap.values()) {
-            stringBuffer.append(new String(bytes));
+            stringBuilder.append(new String(bytes));
         }
-        L.out(stringBuffer.toString());
+        L.out(stringBuilder.toString());
     }
 }

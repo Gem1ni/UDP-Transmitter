@@ -73,11 +73,7 @@ public abstract class AbsReceiver extends Thread implements IDispatcher, IMonito
     public final void onMonitorConnected(byte[] bytes, int offset, int length) {
         byte[] contentLength = ByteUtil.subBytes(bytes, 0, 4);
         int byteToReceive = ByteUtil.bytesToInt(contentLength);
-        if (length > 4) {
-            byte[] additionInfo = ByteUtil.subBytes(bytes, 4, length - 4);
-            String additionString = new String(additionInfo);
-            onHandleAdditionalInfo(additionString);
-        }
+        onInitialization(byteToReceive);
         mTransfer = new TransferImpl(mDataSocket, byteToReceive, this);
         mTransfer.transfer();
     }
@@ -85,10 +81,10 @@ public abstract class AbsReceiver extends Thread implements IDispatcher, IMonito
     /**
      * 处理附加信息
      *
-     * @param additionalInfo
+     * @param byteToReceive
      * @return
      */
-    public abstract void onHandleAdditionalInfo(String additionalInfo);
+    public abstract void onInitialization(int byteToReceive);
 
     /**
      * Connect Error

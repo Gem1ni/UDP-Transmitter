@@ -37,8 +37,8 @@ public class UDPServer {
         dispatcher.launch();
     }
 
-    public void receiveFile() {
-        IDispatcher dispatcher = new FileReceiver(mPort);
+    public void receiveFile(String path, String fileName) {
+        IDispatcher dispatcher = new FileReceiver(mPort, path, fileName);
         dispatcher.launch();
     }
 
