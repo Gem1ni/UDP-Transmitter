@@ -79,12 +79,12 @@ public abstract class AbsReceiver extends Thread implements IDispatcher, IMonito
     }
 
     /**
-     * 处理附加信息
+     * Initialization
      *
-     * @param byteToReceive
+     * @param contentLength
      * @return
      */
-    public abstract void onInitialization(int byteToReceive);
+    public abstract void onInitialization(int contentLength);
 
     /**
      * Connect Error
