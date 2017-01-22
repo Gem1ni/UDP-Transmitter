@@ -65,7 +65,7 @@ public class MonitorImpl implements IMonitor {
      * @return
      * @throws IOException
      */
-    public DatagramPacket receivePacket() throws IOException {
+    private DatagramPacket receivePacket() throws IOException {
         DatagramPacket packet = new DatagramPacket(mReceiveByte, mReceiveByte.length);
         mDataSocket.receive(packet);
         return packet;

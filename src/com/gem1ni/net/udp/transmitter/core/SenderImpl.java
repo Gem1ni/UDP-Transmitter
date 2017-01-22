@@ -65,7 +65,7 @@ public class SenderImpl implements ISender {
      * @param message
      * @throws IOException
      */
-    public void send(InetAddress recv, int port, byte[] message) throws IOException {
+    private void send(InetAddress recv, int port, byte[] message) throws IOException {
         DatagramPacket packet = new DatagramPacket(message, message.length, recv, port);
         mDataSocket.send(packet);
     }
