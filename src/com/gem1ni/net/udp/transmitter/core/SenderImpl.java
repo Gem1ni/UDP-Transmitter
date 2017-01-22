@@ -35,11 +35,11 @@ public class SenderImpl implements ISender {
     private OnSendListener mOnSendListener;
     private byte[] mContent;
 
-    public SenderImpl(DatagramSocket dataSocket, InetAddress address, int port, byte[] bytes) {
+    SenderImpl(DatagramSocket dataSocket, InetAddress address, int port, byte[] bytes) {
         this(dataSocket, address, port, bytes, null);
     }
 
-    public SenderImpl(DatagramSocket dataSocket, InetAddress address, int port, byte[] bytes, OnSendListener onSendListener) {
+    SenderImpl(DatagramSocket dataSocket, InetAddress address, int port, byte[] bytes, OnSendListener onSendListener) {
         this.mDataSocket = dataSocket;
         this.mAddress = address;
         this.mPort = port;

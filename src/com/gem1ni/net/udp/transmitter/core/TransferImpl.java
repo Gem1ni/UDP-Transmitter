@@ -39,7 +39,7 @@ public class TransferImpl implements ITransfer {
     private byte mReceiveByte[];
     private int mBytesReceived = 0;
 
-    public TransferImpl(DatagramSocket mDataSocket, int bytesToReceive, OnTransferListener mOnTransferListener) {
+    TransferImpl(DatagramSocket mDataSocket, int bytesToReceive, OnTransferListener mOnTransferListener) {
         this.mExecutor = Executors.newSingleThreadExecutor();
         this.mDataSocket = mDataSocket;
         this.mBytesToReceive = bytesToReceive;

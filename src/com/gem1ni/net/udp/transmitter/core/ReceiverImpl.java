@@ -36,7 +36,7 @@ public class ReceiverImpl implements IReceiver {
     private byte mReceiveByte[];
     private boolean mReceiving;
 
-    public ReceiverImpl(DatagramSocket dataSocket, OnReceiveListener onReceiveListener) {
+    ReceiverImpl(DatagramSocket dataSocket, OnReceiveListener onReceiveListener) {
         this.mExecutor = Executors.newSingleThreadExecutor();
         this.mDataSocket = dataSocket;
         this.mOnReceiveListener = onReceiveListener;

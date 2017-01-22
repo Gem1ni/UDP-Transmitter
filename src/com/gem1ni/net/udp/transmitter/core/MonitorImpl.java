@@ -35,7 +35,7 @@ public class MonitorImpl implements IMonitor {
     private OnMonitoringListener mOnMonitoringListener;
     private byte mReceiveByte[];
 
-    public MonitorImpl(DatagramSocket datagramSocket, OnMonitoringListener monitoringListener) {
+    MonitorImpl(DatagramSocket datagramSocket, OnMonitoringListener monitoringListener) {
         this.mExecutor = Executors.newSingleThreadExecutor();
         this.mDataSocket = datagramSocket;
         this.mOnMonitoringListener = monitoringListener;
